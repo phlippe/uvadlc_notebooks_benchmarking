@@ -581,7 +581,7 @@ def train_anomaly(**kwargs):
                          callbacks=[ModelCheckpoint(
                              save_weights_only=True, mode="max", monitor="val_acc")],
                          gpus=1 if str(device).startswith("cuda") else 0,
-                         max_epochs=5,
+                         max_epochs=100,
                          gradient_clip_val=2,
                          progress_bar_refresh_rate=1,
                          check_val_every_n_epoch=5)
