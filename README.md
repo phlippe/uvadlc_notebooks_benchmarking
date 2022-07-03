@@ -1,4 +1,4 @@
-# Benchmarking UvA Deep Learning Course Notebooks
+# Benchmarking UvA Deep Learning Tutorials
 Benchmark scripts for comparing the [UvA Deep Learning Tutorials](https://uvadlc-notebooks.readthedocs.io/en/latest/) in PyTorch and JAX. The scripts are reduced versions of the tutorials, and save the runtimes of each model in a logging file in the `logs/` directory.
 
 ## Preparations
