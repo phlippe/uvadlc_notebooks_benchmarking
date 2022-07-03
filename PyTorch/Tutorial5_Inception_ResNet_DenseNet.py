@@ -195,8 +195,11 @@ def train_model(model_name, save_name=None, **kwargs):
     start_time = time.time()
     trainer.fit(model, train_loader, val_loader)
     train_time = time.time()
+    print('-'*50)
     print(model_name, ' - Full training time:',
-          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)))
+          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
+          file=sys.stderr)
+    print('-'*50)
     return None, None
 
 

@@ -13,6 +13,7 @@ import matplotlib
 from matplotlib.colors import to_rgb
 from IPython.display import set_matplotlib_formats
 import os
+import sys
 import numpy as np
 import random
 import math
@@ -374,7 +375,8 @@ def train_reverse(**kwargs):
     trainer.fit(model, train_loader, val_loader)
     train_time = time.time()
     print('Reverse Task - Full training time:',
-          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)))
+          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
+          file=sys.stderr)
 
     return None, None
 
@@ -590,8 +592,11 @@ def train_anomaly(**kwargs):
     start_time = time.time()
     trainer.fit(model, train_anom_loader, val_anom_loader)
     train_time = time.time()
+    print('-'*50)
     print('Anomaly Task - Full training time:',
-          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)))
+          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
+          file=sys.stderr)
+    print('-'*50)
 
     return None, None
 

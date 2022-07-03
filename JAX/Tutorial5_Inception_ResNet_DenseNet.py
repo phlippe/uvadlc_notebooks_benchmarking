@@ -294,8 +294,11 @@ def train_classifier(*args, num_epochs=200, **kwargs):
     start_time = time.time()
     trainer.train_model(train_loader, val_loader, num_epochs=num_epochs)
     train_time = time.time()
+    print('-'*50)
     print(trainer.model_name, ' - Full training time:',
-          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)))
+          time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
+          file=sys.stderr)
+    print('-'*50)
     return None, None
 
 googlenet_kernel_init = nn.initializers.kaiming_normal()

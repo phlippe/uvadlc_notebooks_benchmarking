@@ -1,4 +1,5 @@
 *.ipynb_checkpoints
 data
 saved_models
+logs
 .DS_Store
