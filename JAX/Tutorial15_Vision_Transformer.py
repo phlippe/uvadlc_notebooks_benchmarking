@@ -1,35 +1,19 @@
 from torchvision.datasets import CIFAR10
 from torchvision import transforms
-import torchvision
 from torch.utils.tensorboard import SummaryWriter
 import torch.utils.data as data
 import torch
 import optax
 from flax.training import train_state, checkpoints
 from flax import linen as nn
-import flax
 from jax import random
 import jax.numpy as jnp
 import jax
 from tqdm.auto import tqdm
-import seaborn as sns
-import matplotlib
-from matplotlib.colors import to_rgb
-from IPython.display import set_matplotlib_formats
 import os
 import numpy as np
-import math
-import json
 import time
-from functools import partial
-from PIL import Image
 from collections import defaultdict
-
-import matplotlib.pyplot as plt
-plt.set_cmap('cividis')
-set_matplotlib_formats('svg', 'pdf')  # For export
-matplotlib.rcParams['lines.linewidth'] = 2.0
-sns.reset_orig()
 
 
 DATASET_PATH = "../data"
@@ -352,7 +336,7 @@ class TrainerModule:
                 ckpt_dir=self.log_dir, target=None)
         else:
             params = checkpoints.restore_checkpoint(
-                ckpt_dir=os.path.join(CHECKPOINT_PATH, f'ViT.ckpt'), target=None)
+                ckpt_dir=os.path.join(CHECKPOINT_PATH, 'ViT.ckpt'), target=None)
         self.state = train_state.TrainState.create(
             apply_fn=self.model.apply,
             params=params,
@@ -362,7 +346,7 @@ class TrainerModule:
 
     def checkpoint_exists(self):
         # Check whether a pretrained model exist for this autoencoder
-        return os.path.isfile(os.path.join(CHECKPOINT_PATH, f'ViT.ckpt'))
+        return os.path.isfile(os.path.join(CHECKPOINT_PATH, 'ViT.ckpt'))
 
 
 def train_model(*args, num_epochs=200, **kwargs):

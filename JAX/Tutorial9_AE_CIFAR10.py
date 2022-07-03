@@ -1,34 +1,16 @@
-import tensorboard as tb
-import tensorflow as tf
 from torch.utils.tensorboard import SummaryWriter
 from torchvision.datasets import CIFAR10
-import torchvision
 import torch.utils.data as data
 import torch
 from flax.training import train_state, checkpoints
 from flax import linen as nn
-from jax import random
-import jax.numpy as jnp
 import jax
 from tqdm.auto import tqdm
-import seaborn as sns
-import matplotlib
-from matplotlib.colors import to_rgb
 import os
-import json
-import math
 import time
 import numpy as np
-from scipy import spatial
 
-import matplotlib.pyplot as plt
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('svg', 'pdf')  # For export
-matplotlib.rcParams['lines.linewidth'] = 2.0
-sns.reset_orig()
-sns.set()
 
-import flax
 import optax
 
 

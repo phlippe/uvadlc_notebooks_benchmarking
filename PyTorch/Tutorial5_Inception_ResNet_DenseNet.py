@@ -2,25 +2,15 @@ from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 import pytorch_lightning as pl
 from torchvision import transforms
 from torchvision.datasets import CIFAR10
-import torchvision
 import torch.optim as optim
 import torch.utils.data as data
 import torch.nn as nn
 import torch
-import seaborn as sns
-import matplotlib
 import os
 import numpy as np
 import random
-from PIL import Image
 from types import SimpleNamespace
 import time
-
-import matplotlib.pyplot as plt
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('svg', 'pdf')  # For export
-matplotlib.rcParams['lines.linewidth'] = 2.0
-sns.reset_orig()
 
 
 DATASET_PATH = "../data"

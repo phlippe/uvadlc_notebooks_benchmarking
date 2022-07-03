@@ -1,4 +1,4 @@
-from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
+from pytorch_lightning.callbacks import ModelCheckpoint
 from torchvision import transforms
 from torchvision.datasets import CIFAR100
 import torchvision
@@ -8,25 +8,11 @@ import torch.nn.functional as F
 import torch.nn as nn
 import torch
 from tqdm.notebook import tqdm
-import seaborn as sns
-import matplotlib
-from matplotlib.colors import to_rgb
-from IPython.display import set_matplotlib_formats
 import os
-import sys
 import numpy as np
-import random
 import math
 import time
-import json
 from functools import partial
-
-import matplotlib.pyplot as plt
-plt.set_cmap('cividis')
-set_matplotlib_formats('svg', 'pdf')  # For export
-matplotlib.rcParams['lines.linewidth'] = 2.0
-sns.reset_orig()
-
 import pytorch_lightning as pl
 
 DATASET_PATH = "../data"

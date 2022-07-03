@@ -1,30 +1,13 @@
-from torch.utils.tensorboard import SummaryWriter
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from torchvision import transforms
 from torchvision.datasets import CIFAR10
-import torchvision
 import torch.optim as optim
 import torch.utils.data as data
 import torch.nn.functional as F
 import torch.nn as nn
 import torch
-from tqdm.notebook import tqdm
-import seaborn as sns
-import matplotlib
-from matplotlib.colors import to_rgb
 import os
-import json
 import time
-import math
-import numpy as np
-
-import matplotlib.pyplot as plt
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('svg', 'pdf')  # For export
-matplotlib.rcParams['lines.linewidth'] = 2.0
-sns.reset_orig()
-sns.set()
-
 import pytorch_lightning as pl
 
 

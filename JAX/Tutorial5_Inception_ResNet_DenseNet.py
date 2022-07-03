@@ -1,8 +1,5 @@
-from IPython.display import display, HTML
-import tabulate
 from torchvision.datasets import CIFAR10
 from torchvision import transforms
-import torchvision
 from torch.utils.tensorboard import SummaryWriter
 import torch.utils.data as data
 import torch
@@ -12,22 +9,12 @@ from jax import random
 import jax.numpy as jnp
 import jax
 from tqdm.auto import tqdm
-import seaborn as sns
-import matplotlib
 import os
 import numpy as np
-from PIL import Image
 from typing import Any
 from collections import defaultdict
 import time
 
-import matplotlib.pyplot as plt
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('svg', 'pdf')  # For export
-matplotlib.rcParams['lines.linewidth'] = 2.0
-sns.reset_orig()
-
-import flax
 import optax
 
 
@@ -300,6 +287,7 @@ def train_classifier(*args, num_epochs=200, **kwargs):
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
           file=LOG_FILE, flush=True)
     return None, None
+
 
 googlenet_kernel_init = nn.initializers.kaiming_normal()
 
