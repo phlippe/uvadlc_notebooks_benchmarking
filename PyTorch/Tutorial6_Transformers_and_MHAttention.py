@@ -31,6 +31,8 @@ import pytorch_lightning as pl
 
 DATASET_PATH = "../data"
 CHECKPOINT_PATH = "../saved_models/tutorial6"
+timestr = time.strftime("%Y_%m_%d__%H_%M_%S")
+LOG_FILE = open(f'../logs/tutorial6_pytorch_{timestr}.txt', 'w')
 
 pl.seed_everything(42)
 
@@ -376,7 +378,7 @@ def train_reverse(**kwargs):
     train_time = time.time()
     print('Reverse Task - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
-          file=sys.stderr)
+          file=LOG_FILE, flush=True)
 
     return None, None
 
@@ -592,11 +594,9 @@ def train_anomaly(**kwargs):
     start_time = time.time()
     trainer.fit(model, train_anom_loader, val_anom_loader)
     train_time = time.time()
-    print('-'*50)
     print('Anomaly Task - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
-          file=sys.stderr)
-    print('-'*50)
+          file=LOG_FILE, flush=True)
 
     return None, None
 

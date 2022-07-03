@@ -34,6 +34,8 @@ import optax
 
 DATASET_PATH = "../data"
 CHECKPOINT_PATH = "../saved_models/tutorial6_jax"
+timestr = time.strftime("%Y_%m_%d__%H_%M_%S")
+LOG_FILE = open(f'../logs/tutorial6_jax_{timestr}.txt', 'w')
 
 main_rng = random.PRNGKey(42)
 
@@ -469,11 +471,9 @@ def train_reverse(max_epochs=10, **model_args):
     trainer.train_model(rev_train_loader, rev_val_loader,
                         num_epochs=max_epochs)
     train_time = time.time()
-    print('-'*50)
     print(trainer.model_name, ' - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
-          file=sys.stderr)
-    print('-'*50)
+          file=LOG_FILE, flush=True)
 
     return None, None
 
@@ -681,11 +681,9 @@ def train_anomaly(max_epochs=100, **model_args):
     trainer.train_model(anom_train_loader,
                         anom_val_loader, num_epochs=max_epochs)
     train_time = time.time()
-    print('-'*50)
     print(trainer.model_name, ' - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
-          file=sys.stderr)
-    print('-'*50)
+          file=LOG_FILE, flush=True)
 
     return None, None
 

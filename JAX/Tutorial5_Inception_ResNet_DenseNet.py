@@ -33,6 +33,8 @@ import optax
 
 DATASET_PATH = "../data"
 CHECKPOINT_PATH = "../saved_models/tutorial5_jax"
+timestr = time.strftime("%Y_%m_%d__%H_%M_%S")
+LOG_FILE = open(f'../logs/tutorial5_jax_{timestr}.txt', 'w')
 
 main_rng = random.PRNGKey(42)
 
@@ -294,11 +296,9 @@ def train_classifier(*args, num_epochs=200, **kwargs):
     start_time = time.time()
     trainer.train_model(train_loader, val_loader, num_epochs=num_epochs)
     train_time = time.time()
-    print('-'*50)
     print(trainer.model_name, ' - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
-          file=sys.stderr)
-    print('-'*50)
+          file=LOG_FILE, flush=True)
     return None, None
 
 googlenet_kernel_init = nn.initializers.kaiming_normal()
@@ -403,8 +403,6 @@ googlenet_trainer, googlenet_results = train_classifier(model_class=GoogleNet,
                                                         exmp_imgs=jax.device_put(
                                                             next(iter(train_loader))[0]),
                                                         num_epochs=200)
-
-print("GoogleNet Results", googlenet_results)
 
 resnet_kernel_init = nn.initializers.variance_scaling(
     2.0, mode='fan_out', distribution='normal')
