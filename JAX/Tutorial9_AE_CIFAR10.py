@@ -233,7 +233,8 @@ class TrainerModule:
     def save_model(self, step=0):
         # Save current model at certain training iteration
         checkpoints.save_checkpoint(
-            ckpt_dir=self.log_dir, target=self.state.params, prefix=f'cifar10_{self.latent_dim}_', step=step)
+            ckpt_dir=self.log_dir, target=self.state.params, prefix=f'cifar10_{self.latent_dim}_', step=step,
+            overwrite=True)
 
     def load_model(self, pretrained=False):
         # Load model. We use different checkpoint for pretrained models

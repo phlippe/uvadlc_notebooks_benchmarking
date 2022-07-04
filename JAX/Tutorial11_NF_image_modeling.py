@@ -437,7 +437,7 @@ class TrainerModule:
     def save_model(self, step=0):
         # Save current model at certain training iteration
         checkpoints.save_checkpoint(
-            ckpt_dir=self.log_dir, target=self.state.params, step=step)
+            ckpt_dir=self.log_dir, target=self.state.params, step=step, overwrite=True)
 
     def load_model(self, pretrained=False):
         # Load model. We use different checkpoint for pretrained models
