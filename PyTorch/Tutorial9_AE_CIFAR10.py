@@ -1,4 +1,4 @@
-from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
+from pytorch_lightning.callbacks import ModelCheckpoint
 from torchvision import transforms
 from torchvision.datasets import CIFAR10
 import torch.optim as optim
@@ -194,8 +194,7 @@ def train_cifar(latent_dim):
     trainer = pl.Trainer(default_root_dir=os.path.join(CHECKPOINT_PATH, f"cifar10_{latent_dim}"),
                          gpus=1 if str(device).startswith("cuda") else 0,
                          max_epochs=500,
-                         callbacks=[ModelCheckpoint(save_weights_only=True),
-                                    LearningRateMonitor("epoch")],
+                         callbacks=[ModelCheckpoint(save_weights_only=True)],
                          check_val_every_n_epoch=10)
     # If True, we plot the computation graph in tensorboard
     trainer.logger._log_graph = True

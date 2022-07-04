@@ -1,4 +1,4 @@
-from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
+from pytorch_lightning.callbacks import ModelCheckpoint
 from torchvision import transforms
 from torchvision.datasets import CIFAR10
 import torch.optim as optim
@@ -205,8 +205,7 @@ def train_model(**kwargs):
     trainer = pl.Trainer(default_root_dir=os.path.join(CHECKPOINT_PATH, "ViT"),
                          gpus=1 if str(device) == "cuda:0" else 0,
                          max_epochs=200,
-                         callbacks=[ModelCheckpoint(save_weights_only=True, mode="max", monitor="val_acc"),
-                                    LearningRateMonitor("epoch")],
+                         callbacks=[ModelCheckpoint(save_weights_only=True, mode="max", monitor="val_acc")],
                          check_val_every_n_epoch=2)
     # If True, we plot the computation graph in tensorboard
     trainer.logger._log_graph = True
