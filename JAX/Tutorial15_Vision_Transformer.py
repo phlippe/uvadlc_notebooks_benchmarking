@@ -349,14 +349,14 @@ class TrainerModule:
         return os.path.isfile(os.path.join(CHECKPOINT_PATH, 'ViT.ckpt'))
 
 
-def train_model(*args, num_epochs=200, **kwargs):
+def train_model(*args, num_epochs=1, **kwargs):
     # Create a trainer module with specified hyperparameters
     trainer = TrainerModule(*args, **kwargs)
     
     start_time = time.time()
     trainer.train_model(train_loader, val_loader, num_epochs=num_epochs)
     train_time = time.time()
-    print(trainer.model_name, ' - Full training time:',
+    print('ViT - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
           file=LOG_FILE, flush=True)
     return None, None
