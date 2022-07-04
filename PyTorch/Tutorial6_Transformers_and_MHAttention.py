@@ -569,7 +569,6 @@ def train_anomaly(**kwargs):
                          gpus=1 if str(device).startswith("cuda") else 0,
                          max_epochs=100,
                          gradient_clip_val=2,
-                         progress_bar_refresh_rate=1,
                          check_val_every_n_epoch=5)
     # Optional logging argument that we don't need
     trainer.logger._default_hp_metric = None

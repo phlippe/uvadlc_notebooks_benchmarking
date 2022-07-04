@@ -264,4 +264,4 @@ def train_cifar(latent_dim):
 
 
 for latent_dim in [64, 128, 256, 384]:
-    trainer_ld, test_loss_ld = train_cifar(latent_dim)
+    train_cifar(latent_dim)

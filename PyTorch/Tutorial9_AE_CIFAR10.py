@@ -172,12 +172,8 @@ class Autoencoder(pl.LightningModule):
         optimizer = optim.Adam(self.parameters(), lr=1e-3)
         # Using a scheduler is optional but can be helpful.
         # The scheduler reduces the LR if the validation performance hasn't improved for the last N epochs
-        scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer,
-                                                         mode='min',
-                                                         factor=0.2,
-                                                         patience=20,
-                                                         min_lr=5e-5)
-        return {"optimizer": optimizer, "lr_scheduler": scheduler, "monitor": "val_loss"}
+        scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=500*len(train_loader), eta_min=1e-5)
+        return {"optimizer": optimizer, "lr_scheduler": scheduler}
 
     def training_step(self, batch, batch_idx):
         loss = self._get_reconstruction_loss(batch)
@@ -213,8 +209,7 @@ def train_cifar(latent_dim):
     print(f'AE {latent_dim} latents - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
           file=LOG_FILE, flush=True)
-    return None, None
 
 
 for latent_dim in [64, 128, 256, 384]:
-    model_ld, result_ld = train_cifar(latent_dim)
+    train_cifar(latent_dim)
