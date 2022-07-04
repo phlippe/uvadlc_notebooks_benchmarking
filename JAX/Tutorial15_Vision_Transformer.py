@@ -349,7 +349,7 @@ class TrainerModule:
         return os.path.isfile(os.path.join(CHECKPOINT_PATH, 'ViT.ckpt'))
 
 
-def train_model(*args, num_epochs=1, **kwargs):
+def train_model(*args, num_epochs=200, **kwargs):
     # Create a trainer module with specified hyperparameters
     trainer = TrainerModule(*args, **kwargs)
     
