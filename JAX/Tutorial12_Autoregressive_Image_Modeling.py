@@ -16,6 +16,7 @@ import numpy as np
 from typing import Any
 import flax
 import optax
+import time
 
 DATASET_PATH = "../data"
 CHECKPOINT_PATH = "../saved_models/tutorial12_jax"
@@ -384,11 +385,11 @@ def train_model(**model_args):
     trainer = TrainerModule(exmp_imgs=next(iter(train_loader))[0],
                             **model_args)
     start_time = time.time()
-    trainer.train_model(train_data_loader,
+    trainer.train_model(train_loader,
                         val_loader,
                         num_epochs=150)
     train_time = time.time()
-    print(f'{model_name} - Full training time:',
+    print(f'PixelCNN - Full training time:',
           time.strftime('%H:%M:%S', time.gmtime(train_time - start_time)),
           file=LOG_FILE, flush=True)
 
